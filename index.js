@@ -1,11 +1,11 @@
 'use strict';
 const pMap = require('p-map');
 
+class EndError extends Error {} // eslint-disable-line unicorn/custom-error-definition
+
 const filter = filterer => (x, i) => Promise.resolve(filterer(x, i)).then(val => {
 	if (!val) {
-		const err = new Error();
-		err.code = 'EISFALSE';
-		throw err;
+		throw new EndError();
 	}
 
 	return val;
@@ -14,7 +14,7 @@ const filter = filterer => (x, i) => Promise.resolve(filterer(x, i)).then(val =>
 module.exports = (iterable, filterer, opts) => pMap(iterable, filter(filterer), opts)
 	.then(() => true)
 	.catch(err => {
-		if (err.code === 'EISFALSE') {
+		if (err instanceof EndError) {
 			return false;
 		}
 
