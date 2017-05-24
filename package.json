@@ -1,6 +1,6 @@
 {
   "name": "p-every",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Test whether all promises passes a testing function",
   "license": "MIT",
   "repository": "kevva/p-every",
