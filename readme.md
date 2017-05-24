@@ -24,9 +24,9 @@ const places = [
 	'Tokyo, Japan'
 ];
 
-const filterer = x => getContinent(x).then(x => x === 'europe');
+const testingFunction = x => getContinent(x).then(x => x === 'europe');
 
-pEvery(places, filterer).then(result => {
+pEvery(places, testingFunction).then(result => {
 	console.log(result);
 	//=> false
 });
@@ -35,17 +35,17 @@ pEvery(places, filterer).then(result => {
 
 ## API
 
-### pFilter(input, filterer, [options])
+### pEvery(input, testingFunction, [options])
 
-Returns a `Promise` that is fulfilled when all promises in `input` and ones returned from `filterer` are fulfilled, or rejects if any of the promises reject. The fulfilled value is a `boolean` that is `true` if all Promises passed the test and `false` otherwise.
+Returns a `Promise` that is fulfilled when all promises in `input` and ones returned from `testingFunction` are fulfilled, or rejects if any of the promises reject. The fulfilled value is a `boolean` that is `true` if all Promises passed the test and `false` otherwise.
 
 #### input
 
 Type: `Iterable<Promise|any>`
 
-Iterated over concurrently in the `filterer` function.
+Iterated over concurrently in the `testingFunction` function.
 
-#### filterer(element, index)
+#### testingFunction(element, index)
 
 Type: `Function`
 
@@ -61,7 +61,7 @@ Type: `number`<br>
 Default: `Infinity`<br>
 Minimum: `1`
 
-Number of concurrently pending promises returned by `filterer`.
+Number of concurrently pending promises returned by `testingFunction`.
 
 
 ## Related

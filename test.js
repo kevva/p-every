@@ -3,7 +3,7 @@ import m from '.';
 
 test('true', async t => {
 	t.true(await m([Promise.resolve(1), 3], x => x % 2));
-	t.true(await m([1, 3], x => Promise.resolve(x % 2)), [1, 3]);
+	t.true(await m([1, 3], x => Promise.resolve(x % 2)));
 });
 
 test('false', async t => {
