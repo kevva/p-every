@@ -24,9 +24,9 @@ const places = [
 	'Tokyo, Japan'
 ];
 
-const testingFunction = x => getContinent(x).then(x => x === 'europe');
+const testFn = x => getContinent(x).then(x => x === 'europe');
 
-pEvery(places, testingFunction).then(result => {
+pEvery(places, testFn).then(result => {
 	console.log(result);
 	//=> false
 });
@@ -35,17 +35,17 @@ pEvery(places, testingFunction).then(result => {
 
 ## API
 
-### pEvery(input, testingFunction, [options])
+### pEvery(input, testFn, [options])
 
-Returns a `Promise` that is fulfilled when all promises in `input` and ones returned from `testingFunction` are fulfilled, or rejects if any of the promises reject. The fulfilled value is a `boolean` that is `true` if all Promises passed the test and `false` otherwise.
+Returns a `Promise` that is fulfilled when all promises in `input` and ones returned from `testFn` are fulfilled, or rejects if any of the promises reject. The fulfilled value is a `boolean` that is `true` if all Promises passed the test and `false` otherwise.
 
 #### input
 
 Type: `Iterable<Promise|any>`
 
-Iterated over concurrently in the `testingFunction` function.
+Iterated over concurrently in the `testFn` function.
 
-#### testingFunction(element, index)
+#### testFn(element, index)
 
 Type: `Function`
 
@@ -61,7 +61,7 @@ Type: `number`<br>
 Default: `Infinity`<br>
 Minimum: `1`
 
-Number of concurrently pending promises returned by `testingFunction`.
+Number of concurrently pending promises returned by `testFn`.
 
 
 ## Related
